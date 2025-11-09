@@ -11,7 +11,7 @@ import json
 FPS = 60
 WIDTH = 680
 HEIGHT = 600
-IP = '140.120.230.87'
+IP = '192.168.0.102'
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
@@ -42,24 +42,24 @@ class Button():
         else:
             self.text = self.font.render(self.text_input, True, self.base_color)
 
-botton_img = pygame.image.load("images/button.png")
+botton_img = pygame.image.load("images/item/button.png")
 def main_menu():
     pygame.display.set_caption("遊戲主畫面")
 
-    pygame.mixer.music.load("Music/music_menu.mp3")
+    pygame.mixer.music.load("music/music_menu.mp3")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)
 
     while True:
         clock.tick(FPS)
-        bg_img = pygame.image.load("images/bg_menu.png").convert()
+        bg_img = pygame.image.load("images/item/bg_menu.png").convert()
         screen.blit(bg_img, (0,0))
 
         MOUSE_POS = pygame.mouse.get_pos()
 
-        PLAY_BUTTON = Button(botton_img, (340,350), "開始遊玩", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
-        TEACH_BUTTON = Button(botton_img, (340,450), "遊戲教學", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
-        QUIT_BUTTON = Button(botton_img, (340,550), "離開", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
+        PLAY_BUTTON = Button(botton_img, (340,350), "開始遊玩", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
+        TEACH_BUTTON = Button(botton_img, (340,450), "遊戲教學", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
+        QUIT_BUTTON = Button(botton_img, (340,550), "離開", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
 
         for botton in [PLAY_BUTTON, TEACH_BUTTON, QUIT_BUTTON]:
             botton.changeColor(MOUSE_POS)
@@ -85,15 +85,15 @@ def main_menu():
 def how_to_play():
     pygame.display.set_caption("遊戲教學")
 
-    bg_img = pygame.image.load("images/bg_teach.png")
-    font = pygame.font.Font("Fonts/font.ttf", 18)
-    font_en = pygame.font.Font("Fonts/font_en.ttf", 20)
-    p1_0 = pygame.image.load("player/p1_0.png")
-    p1_1 = pygame.image.load("player/p1_1.png")
-    p1_2 = pygame.image.load("player/p1_2.png")
-    p2_0 = pygame.image.load("player/p2_0.png")
-    p2_1 = pygame.image.load("player/p2_1.png")
-    p2_2 = pygame.image.load("player/p2_2.png")
+    bg_img = pygame.image.load("images/item/bg_teach.png")
+    font = pygame.font.Font("fonts/font.ttf", 18)
+    font_en = pygame.font.Font("fonts/font_en.ttf", 20)
+    p1_0 = pygame.image.load("images/player/p1_0.png")
+    p1_1 = pygame.image.load("images/player/p1_1.png")
+    p1_2 = pygame.image.load("images/player/p1_2.png")
+    p2_0 = pygame.image.load("images/player/p2_0.png")
+    p2_1 = pygame.image.load("images/player/p2_1.png")
+    p2_2 = pygame.image.load("images/player/p2_2.png")
     p1 = [p1_0, p1_1, p1_2, p1_1]
     p2 = [p2_0, p2_1, p2_2, p2_1]
     frame = 0
@@ -106,7 +106,7 @@ def how_to_play():
         MOUSE_POS = pygame.mouse.get_pos()
 
         img = pygame.transform.scale(botton_img,(200,50))
-        BACK_BUTTON = Button(img, (575,40), "返回", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
+        BACK_BUTTON = Button(img, (575,40), "返回", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
 
         p1_img = p1[frame]
         p2_img = p2[frame]
@@ -152,21 +152,21 @@ def p1_win():
     pygame.mixer.music.stop()
     sounds['win'].play()
     win_images = []
-    win_images.append(pygame.image.load("images/1p_win.png"))
-    win_images.append(pygame.image.load("images/1p_win2.png"))
+    win_images.append(pygame.image.load("images/item/1p_win.png"))
+    win_images.append(pygame.image.load("images/item/1p_win2.png"))
     frame = 0
     last_frame = pygame.time.get_ticks()
     while True:
         clock.tick(FPS)
         MOUSE_POS = pygame.mouse.get_pos()
 
-        bg_img = pygame.image.load("images/bg_p1.png").convert()
+        bg_img = pygame.image.load("images/item/bg_p1.png").convert()
         screen.blit(bg_img, (0,0))
         
         win_rect = win_images[0].get_rect(center=(340,300))
 
         img = pygame.transform.scale(botton_img,(200,50))
-        BACK_BUTTON = Button(img, (340,450), "退出", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
+        BACK_BUTTON = Button(img, (340,450), "退出", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
 
         BACK_BUTTON.changeColor(MOUSE_POS)
         BACK_BUTTON.update(screen)
@@ -191,21 +191,21 @@ def p2_win():
     pygame.mixer.music.stop()
     sounds['win'].play()
     win_images = []
-    win_images.append(pygame.image.load("images/2p_win.png"))
-    win_images.append(pygame.image.load("images/2p_win2.png"))
+    win_images.append(pygame.image.load("images/item/2p_win.png"))
+    win_images.append(pygame.image.load("images/item/2p_win2.png"))
     frame = 0
     last_frame = pygame.time.get_ticks()
     while True:
         clock.tick(FPS)
         MOUSE_POS = pygame.mouse.get_pos()
 
-        bg_img = pygame.image.load("images/bg_p2.jpg").convert()
+        bg_img = pygame.image.load("images/item/bg_p2.jpg").convert()
         screen.blit(bg_img, (0,0))
 
         win_rect = win_images[0].get_rect(center=(340,300))
 
         img = pygame.transform.scale(botton_img,(200,50))
-        BACK_BUTTON = Button(img, (340,450), "退出", pygame.font.Font("Fonts/font.ttf", 20), "white", "Yellow")
+        BACK_BUTTON = Button(img, (340,450), "退出", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
 
         BACK_BUTTON.changeColor(MOUSE_POS)
         BACK_BUTTON.update(screen)
@@ -228,18 +228,18 @@ def p2_win():
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        down0_img = pygame.image.load('player/r_down0.png')
-        down1_img = pygame.image.load('player/r_down1.png')
-        down2_img = pygame.image.load('player/r_down2.png')
-        left0_img = pygame.image.load('player/r_left0.png')
-        left1_img = pygame.image.load('player/r_left1.png')
-        left2_img = pygame.image.load('player/r_left2.png')
-        right0_img = pygame.image.load('player/r_right0.png')
-        right1_img = pygame.image.load('player/r_right1.png')
-        right2_img = pygame.image.load('player/r_right2.png')
-        up0_img = pygame.image.load('player/r_up0.png')
-        up1_img = pygame.image.load('player/r_up1.png')
-        up2_img = pygame.image.load('player/r_up2.png')
+        down0_img = pygame.image.load('images/player/r_down0.png')
+        down1_img = pygame.image.load('images/player/r_down1.png')
+        down2_img = pygame.image.load('images/player/r_down2.png')
+        left0_img = pygame.image.load('images/player/r_left0.png')
+        left1_img = pygame.image.load('images/player/r_left1.png')
+        left2_img = pygame.image.load('images/player/r_left2.png')
+        right0_img = pygame.image.load('images/player/r_right0.png')
+        right1_img = pygame.image.load('images/player/r_right1.png')
+        right2_img = pygame.image.load('images/player/r_right2.png')
+        up0_img = pygame.image.load('images/player/r_up0.png')
+        up1_img = pygame.image.load('images/player/r_up1.png')
+        up2_img = pygame.image.load('images/player/r_up2.png')
         self.images = {
             'up': [up0_img, up1_img, up2_img],
             'down': [down0_img, down1_img, down2_img],
@@ -341,18 +341,18 @@ class Player(pygame.sprite.Sprite):
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        down0_img = pygame.image.load('player/b_down0.png')
-        down1_img = pygame.image.load('player/b_down1.png')
-        down2_img = pygame.image.load('player/b_down2.png')
-        left0_img = pygame.image.load('player/b_left0.png')
-        left1_img = pygame.image.load('player/b_left1.png')
-        left2_img = pygame.image.load('player/b_left2.png')
-        right0_img = pygame.image.load('player/b_right0.png')
-        right1_img = pygame.image.load('player/b_right1.png')
-        right2_img = pygame.image.load('player/b_right2.png')
-        up0_img = pygame.image.load('player/b_up0.png')
-        up1_img = pygame.image.load('player/b_up1.png')
-        up2_img = pygame.image.load('player/b_up2.png')
+        down0_img = pygame.image.load('images/player/b_down0.png')
+        down1_img = pygame.image.load('images/player/b_down1.png')
+        down2_img = pygame.image.load('images/player/b_down2.png')
+        left0_img = pygame.image.load('images/player/b_left0.png')
+        left1_img = pygame.image.load('images/player/b_left1.png')
+        left2_img = pygame.image.load('images/player/b_left2.png')
+        right0_img = pygame.image.load('images/player/b_right0.png')
+        right1_img = pygame.image.load('images/player/b_right1.png')
+        right2_img = pygame.image.load('images/player/b_right2.png')
+        up0_img = pygame.image.load('images/player/b_up0.png')
+        up1_img = pygame.image.load('images/player/b_up1.png')
+        up2_img = pygame.image.load('images/player/b_up2.png')
         self.images = {
             'up': [up0_img, up1_img, up2_img],
             'down': [down0_img, down1_img, down2_img],
@@ -463,10 +463,10 @@ class World(object):
     def __init__(self):
         tile_size = 40
         self.tile_list = []
-        self.data = load_data_from_csv("rock_place.csv")
+        self.data = load_data_from_csv("csv/rock_place.csv")
 
         # load raw_images
-        rock_img = pygame.image.load('images/stone_block.png')
+        rock_img = pygame.image.load('images/item/stone_block.png')
 
         row_count = 0
         for row in self.data:
@@ -489,7 +489,7 @@ class World(object):
 class Block(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
-        block_img = pygame.image.load('images/block1.png')
+        block_img = pygame.image.load('images/item/block1.png')
         self.image = block_img
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -497,7 +497,7 @@ class Block(pygame.sprite.Sprite):
 
 def load_blocks(filename):
     blocks = pygame.sprite.Group()  # Group to hold all blocks
-    data = load_data_from_csv("block_place.csv")
+    data = load_data_from_csv("csv/block_place.csv")
     tile_size = 40
     row_count = 0
     for row in data:
@@ -512,13 +512,13 @@ def load_blocks(filename):
         row_count += 1
     return blocks
 
-bomb0_img = pygame.image.load('images/bomb0.png')
-bomb1_img = pygame.image.load('images/bomb1.png')
-bomb_center_img = pygame.image.load('images/bomb_center.png')
-bomb_up_img = pygame.image.load('images/bomb_up.png')
-bomb_down_img = pygame.image.load('images/bomb_down.png')
-bomb_left_img = pygame.image.load('images/bomb_left.png')
-bomb_right_img = pygame.image.load('images/bomb_right.png')
+bomb0_img = pygame.image.load('images/item/bomb0.png')
+bomb1_img = pygame.image.load('images/item/bomb1.png')
+bomb_center_img = pygame.image.load('images/item/bomb_center.png')
+bomb_up_img = pygame.image.load('images/item/bomb_up.png')
+bomb_down_img = pygame.image.load('images/item/bomb_down.png')
+bomb_left_img = pygame.image.load('images/item/bomb_left.png')
+bomb_right_img = pygame.image.load('images/item/bomb_right.png')
 expl = [bomb0_img,bomb1_img,bomb0_img,bomb1_img,bomb0_img,bomb1_img]
 expl_direction = {'center':bomb_center_img,'up':bomb_up_img,'down':bomb_down_img,'left':bomb_left_img,'right':bomb_right_img}
 class Explosion(pygame.sprite.Sprite):
@@ -602,12 +602,12 @@ class Bomb(pygame.sprite.Sprite):
                 break
 
 items_img = {'bubble':[], 'liquid':[], 'roller':[]}
-items_img['bubble'].append(pygame.image.load('images/bubble_0.png'))
-items_img['bubble'].append(pygame.image.load('images/bubble_1.png'))
-items_img['liquid'].append(pygame.image.load('images/liquid_0.png'))
-items_img['liquid'].append(pygame.image.load('images/liquid_1.png'))
-items_img['roller'].append(pygame.image.load('images/roller_0.png'))
-items_img['roller'].append(pygame.image.load('images/roller_1.png'))
+items_img['bubble'].append(pygame.image.load('images/item/bubble_0.png'))
+items_img['bubble'].append(pygame.image.load('images/item/bubble_1.png'))
+items_img['liquid'].append(pygame.image.load('images/item/liquid_0.png'))
+items_img['liquid'].append(pygame.image.load('images/item/liquid_1.png'))
+items_img['roller'].append(pygame.image.load('images/item/roller_0.png'))
+items_img['roller'].append(pygame.image.load('images/item/roller_1.png'))
 class Item(pygame.sprite.Sprite):
     def __init__(self,center):
         pygame.sprite.Sprite.__init__(self)
@@ -653,11 +653,11 @@ player_id = None
 clock = pygame.time.Clock()
 
 sounds = {}
-sounds['start'] = pygame.mixer.Sound("Music/sound_start.mp3")
-sounds['bubble'] = pygame.mixer.Sound("Music/sound_bubble.mp3")
-sounds['broke'] = pygame.mixer.Sound("Music/sound_broke.mp3")
-sounds['item'] = pygame.mixer.Sound("Music/sound_item.mp3")
-sounds['win'] = pygame.mixer.Sound("Music/sound_win.mp3")
+sounds['start'] = pygame.mixer.Sound("music/sound_start.mp3")
+sounds['bubble'] = pygame.mixer.Sound("music/sound_bubble.mp3")
+sounds['broke'] = pygame.mixer.Sound("music/sound_broke.mp3")
+sounds['item'] = pygame.mixer.Sound("music/sound_item.mp3")
+sounds['win'] = pygame.mixer.Sound("music/sound_win.mp3")
 
 data_lock = threading.Lock()
 def receive_data():
@@ -706,8 +706,8 @@ def redraw_window():
     pygame.display.update()
 
 def wait_for_player():
-    bg_img = pygame.image.load("images/bg_wait.jpg").convert()
-    font = pygame.font.Font("Fonts/font.ttf", 20)
+    bg_img = pygame.image.load("images/item/bg_wait.jpg").convert()
+    font = pygame.font.Font("fonts/font.ttf", 20)
     texts = ['等候其他玩家連線', '等候其他玩家連線。', '等候其他玩家連線。。', '等候其他玩家連線。。。']
     frame = 0
     last_update = pygame.time.get_ticks()
@@ -733,7 +733,7 @@ def wait_for_player():
 seed = 1000
 def play():
     pygame.display.set_caption("爆爆王")
-    bg_img = pygame.image.load("images/background.png").convert()
+    bg_img = pygame.image.load("images/item/bg_map.png").convert()
     reset_game()
 
     global seed
@@ -775,20 +775,20 @@ def play():
     wait_for_player()
 
     #初始化木箱
-    blocks = load_blocks('block_place.csv')
+    blocks = load_blocks('csv/block_place.csv')
 
     #start動畫
     frame = 0
     last_frame = pygame.time.get_ticks()
     start_images = []
-    start_images.append(pygame.image.load("images/word_start.png"))
-    start_images.append(pygame.image.load("images/word_start2.png"))
-    start_images.append(pygame.image.load("images/word_start.png"))
-    start_images.append(pygame.image.load("images/word_start2.png"))
+    start_images.append(pygame.image.load("images/item/word_start.png"))
+    start_images.append(pygame.image.load("images/item/word_start2.png"))
+    start_images.append(pygame.image.load("images/item/word_start.png"))
+    start_images.append(pygame.image.load("images/item/word_start2.png"))
     start_rect = start_images[0].get_rect(center = (340,300))
     sounds['start'].play()
 
-    pygame.mixer.music.load("Music/music_game.mp3")
+    pygame.mixer.music.load("music/music_game.mp3")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)
 
