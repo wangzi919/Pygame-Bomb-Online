@@ -11,7 +11,7 @@ import json
 FPS = 60
 WIDTH = 680
 HEIGHT = 600
-IP = '192.168.0.102'
+IP = '192.168.0.102' #須改為玩家的IP
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
@@ -152,8 +152,8 @@ def p1_win():
     pygame.mixer.music.stop()
     sounds['win'].play()
     win_images = []
-    win_images.append(pygame.image.load("images/item/1p_win.png"))
-    win_images.append(pygame.image.load("images/item/1p_win2.png"))
+    win_images.append(pygame.image.load("images/item/p1_win0.png"))
+    win_images.append(pygame.image.load("images/item/p1_win1.png"))
     frame = 0
     last_frame = pygame.time.get_ticks()
     while True:
@@ -191,8 +191,8 @@ def p2_win():
     pygame.mixer.music.stop()
     sounds['win'].play()
     win_images = []
-    win_images.append(pygame.image.load("images/item/2p_win.png"))
-    win_images.append(pygame.image.load("images/item/2p_win2.png"))
+    win_images.append(pygame.image.load("images/item/p2_win0.png"))
+    win_images.append(pygame.image.load("images/item/p2_win1.png"))
     frame = 0
     last_frame = pygame.time.get_ticks()
     while True:
@@ -781,10 +781,10 @@ def play():
     frame = 0
     last_frame = pygame.time.get_ticks()
     start_images = []
-    start_images.append(pygame.image.load("images/item/word_start.png"))
-    start_images.append(pygame.image.load("images/item/word_start2.png"))
-    start_images.append(pygame.image.load("images/item/word_start.png"))
-    start_images.append(pygame.image.load("images/item/word_start2.png"))
+    start_images.append(pygame.image.load("images/item/word_start0.png"))
+    start_images.append(pygame.image.load("images/item/word_start1.png"))
+    start_images.append(pygame.image.load("images/item/word_start0.png"))
+    start_images.append(pygame.image.load("images/item/word_start1.png"))
     start_rect = start_images[0].get_rect(center = (340,300))
     sounds['start'].play()
 
