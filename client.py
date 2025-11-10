@@ -11,7 +11,7 @@ import json
 FPS = 60
 WIDTH = 680
 HEIGHT = 600
-IP = '192.168.0.102' #須改為玩家的IP
+IP = input("請輸入伺服器端 IP 位址 (例如: 192.168.0.102): ")
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
@@ -43,6 +43,7 @@ class Button():
             self.text = self.font.render(self.text_input, True, self.base_color)
 
 botton_img = pygame.image.load("images/item/button.png")
+botton_img = pygame.transform.scale(botton_img, (150, 50))
 def main_menu():
     pygame.display.set_caption("遊戲主畫面")
 
@@ -53,13 +54,14 @@ def main_menu():
     while True:
         clock.tick(FPS)
         bg_img = pygame.image.load("images/item/bg_menu.png").convert()
+        bg_img = pygame.transform.scale(bg_img, (WIDTH, HEIGHT))
         screen.blit(bg_img, (0,0))
 
         MOUSE_POS = pygame.mouse.get_pos()
 
-        PLAY_BUTTON = Button(botton_img, (340,350), "開始遊玩", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
-        TEACH_BUTTON = Button(botton_img, (340,450), "遊戲教學", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
-        QUIT_BUTTON = Button(botton_img, (340,550), "離開", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
+        PLAY_BUTTON = Button(botton_img, (560,450), "開始遊玩", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
+        TEACH_BUTTON = Button(botton_img, (560,505), "遊戲教學", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
+        QUIT_BUTTON = Button(botton_img, (560,560), "離開", pygame.font.Font("fonts/font.ttf", 20), "white", "Yellow")
 
         for botton in [PLAY_BUTTON, TEACH_BUTTON, QUIT_BUTTON]:
             botton.changeColor(MOUSE_POS)
@@ -199,7 +201,7 @@ def p2_win():
         clock.tick(FPS)
         MOUSE_POS = pygame.mouse.get_pos()
 
-        bg_img = pygame.image.load("images/item/bg_p2.jpg").convert()
+        bg_img = pygame.image.load("images/item/bg_p2.png").convert()
         screen.blit(bg_img, (0,0))
 
         win_rect = win_images[0].get_rect(center=(340,300))
@@ -466,7 +468,7 @@ class World(object):
         self.data = load_data_from_csv("csv/rock_place.csv")
 
         # load raw_images
-        rock_img = pygame.image.load('images/item/stone_block.png')
+        rock_img = pygame.image.load('images/item/rock.png')
 
         row_count = 0
         for row in self.data:
@@ -489,7 +491,7 @@ class World(object):
 class Block(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
-        block_img = pygame.image.load('images/item/block1.png')
+        block_img = pygame.image.load('images/item/block.png')
         self.image = block_img
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -706,7 +708,7 @@ def redraw_window():
     pygame.display.update()
 
 def wait_for_player():
-    bg_img = pygame.image.load("images/item/bg_wait.jpg").convert()
+    bg_img = pygame.image.load("images/item/bg_wait.png").convert()
     font = pygame.font.Font("fonts/font.ttf", 20)
     texts = ['等候其他玩家連線', '等候其他玩家連線。', '等候其他玩家連線。。', '等候其他玩家連線。。。']
     frame = 0
